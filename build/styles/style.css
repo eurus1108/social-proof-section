@@ -24,6 +24,7 @@ html {
 }
 
 body {
+  position: relative;
   padding: 0 2.4rem;
   font-family: "League Spartan", sans-serif;
   font-size: var(--font-size-400);
@@ -32,16 +33,69 @@ body {
   background-color: var(--neutral-300);
 }
 
+body::before {
+  top: 0;
+  left: 0;
+}
+
+body::after {
+  bottom: 0;
+  right: 0;
+}
+
+body::before,
+body::after {
+  content: "";
+  position: absolute;
+  z-index: -1;
+  display: block;
+  background-repeat: no-repeat;
+  background-position: center;
+  background-size: cover;
+}
+
 .h-wrapper {
   padding: 8.2rem 0 9.9rem;
 }
 
 @media only screen and (min-width: 996px) {
+  body {
+    display: flex;
+    align-items: center;
+    height: 100vh;
+  }
+
+  body::before {
+    width: 58.4rem;
+    height: 36.2rem;
+    background-image: url("./../images/bg-pattern-top-desktop.svg");
+  }
+
+  body::after {
+    width: 108.5rem;
+    height: 67.3rem;
+    background-image: url("./../images/bg-pattern-bottom-desktop.svg");
+  }
+
   .h-wrapper {
     padding: 11.8rem 0 10rem;
     width: 100%;
     max-width: 111.1rem;
     margin: 0 auto;
+  }
+}
+
+@media only screen and (max-width: 995px) {
+  body::before {
+    width: 37.4rem;
+    height: 23.2rem;
+    background-image: url("./../images/bg-pattern-top-mobile.svg");
+  }
+
+  body::after {
+    width: 37.5rem;
+    height: 50.3rem;
+    background-image: url("./../images/bg-pattern-bottom-mobile.svg");
   }
 }
 
@@ -89,6 +143,10 @@ body {
 }
 
 @media only screen and (min-width: 996px) {
+  .feature-panel {
+    margin-bottom: 7.1rem;
+  }
+
   .feature-panel__container .text-content {
     width: 100%;
     margin-bottom: 0;
@@ -185,6 +243,22 @@ body {
 
 /* Testimonials */
 
+.testimonial {
+  display: flex;
+}
+
+@media only screen and (max-width: 995px) {
+  .testimonial {
+    flex-direction: column;
+    align-items: center;
+    justify-content: center;
+  }
+
+  .testimonial__block:not(:last-child) {
+    margin-bottom: 1.6rem;
+  }
+}
+
 .testimonial__block {
   max-width: 32.7rem;
   width: 100%;
@@ -193,10 +267,6 @@ body {
   background-color: var(--primary-magenta);
   border-radius: 0.8rem;
   overflow: hidden;
-}
-
-.testimonial__block:not(:last-child) {
-  margin-bottom: 1.6rem;
 }
 
 .testimonial__block .container-block {
@@ -237,4 +307,27 @@ body {
   font-weight: 500;
   line-height: 2.2rem;
   letter-spacing: 0.007em;
+}
+
+@media only screen and (min-width: 996px) {
+  .testimonial {
+    gap: 3rem;
+  }
+
+  .testimonial__block {
+    max-width: 35rem;
+    padding-bottom: 3.9rem;
+  }
+
+  .testimonial__block:first-child {
+    margin-bottom: 3.2rem;
+  }
+
+  .testimonial__block:nth-child(2) {
+    margin: 1.6rem 0;
+  }
+
+  .testimonial__block:last-child {
+    margin-top: 3.2rem;
+  }
 }
